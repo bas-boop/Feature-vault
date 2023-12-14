@@ -1,7 +1,7 @@
 ---
 name: 'Bug: title'
 about: Short bug description
-title: 'Bug: new bug'
+title: 'Bug: new bug_name'
 labels: bug
 assignees: bas-boop
 
