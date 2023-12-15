@@ -332,11 +332,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="yRange">Range for the Y axis.</param>
         /// <param name="zRange">Range for the Z axis.</param>
         /// <returns>A new Vector3 with randomized axes.</returns>
-        public static ref Vector3 RandomizeVector(ref this Vector3 v, Vector3 xRange, Vector3 yRange, Vector3 zRange)
+        public static ref Vector3 RandomizeVector(ref this Vector3 v, Vector2 xRange, Vector2 yRange, Vector2 zRange)
         {
             v.x = Random.Range(xRange.x, xRange.y);
             v.y = Random.Range(yRange.x, yRange.y);
-            v.z = Random.Range(zRange.x, zRange.z);
+            v.z = Random.Range(zRange.x, zRange.y);
             return ref v;
         }
         
@@ -346,7 +346,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="range">Range for all axes.</param>
         /// <returns>A new Vector3 with randomized axes.</returns>
-        public static ref Vector3 RandomizeVector(ref this Vector3 v, Vector3 range)
+        public static ref Vector3 RandomizeVector(ref this Vector3 v, Vector2 range)
         {
             v.x = Random.Range(range.x, range.y);
             v.y = Random.Range(range.x, range.y);
@@ -360,7 +360,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="range">Range for all axes.</param>
         /// <returns>A new Vector3 with the same randomized value for all axes.</returns>
-        public static ref Vector3 RandomizeVectorUniform(ref this Vector3 v, Vector3 range)
+        public static ref Vector3 RandomizeVectorUniform(ref this Vector3 v, Vector2 range)
         {
             float randomValue = Random.Range(range.x, range.y);
             v.x = randomValue;
@@ -375,7 +375,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="xRange">Range for the X axis.</param>
         /// <returns>A new Vector3 with a randomized X axis.</returns>
-        public static ref Vector3 RandomizeX(ref this Vector3 v, Vector3 xRange)
+        public static ref Vector3 RandomizeX(ref this Vector3 v, Vector2 xRange)
         {
             v.x = Random.Range(xRange.x, xRange.y);
             return ref v;
@@ -387,7 +387,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="yRange">Range for the Y axis.</param>
         /// <returns>A new Vector3 with a randomized Y axis.</returns>
-        public static ref Vector3 RandomizeY(ref this Vector3 v, Vector3 yRange)
+        public static ref Vector3 RandomizeY(ref this Vector3 v, Vector2 yRange)
         {
             v.y = Random.Range(yRange.x, yRange.y);
             return ref v;
@@ -399,9 +399,9 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="zRange">Range for the Z axis.</param>
         /// <returns>A new Vector3 with a randomized Z axis.</returns>
-        public static ref Vector3 RandomizeZ(ref this Vector3 v, Vector3 zRange)
+        public static ref Vector3 RandomizeZ(ref this Vector3 v, Vector2 zRange)
         {
-            v.z = Random.Range(zRange.x, zRange.z);
+            v.z = Random.Range(zRange.x, zRange.y);
             return ref v;
         }
         
