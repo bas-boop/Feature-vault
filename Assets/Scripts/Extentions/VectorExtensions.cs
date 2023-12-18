@@ -6,10 +6,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
     /// Provides versatile extensions for Vector2 and Vector3, enhancing functionality for various operations.
     /// Ideal for integration into any Unity project.
     /// Features:
-    /// - Change Axis
+    /// - Set Axis
     /// - Divide Vector & Axis
-    /// - Combine Vector & Axis
-    /// - Separate Vector & Axis
+    /// - Add Vector & Axis
+    /// - Subtract Vector & Axis
     /// - Multiply Vector & Axis
     /// - Compare Vector & Axis (with optional margin)
     /// - Randomize Vector & Axis
@@ -22,16 +22,17 @@ namespace Baz_geluk9.Feature_vault.Extensions
     {
         #region Vector 3
 
-        #region Change Axis
+        #region Set Axis
 
         /// <summary>
         /// Change the X vector of this Vector3
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="x">Target value for the X vector.</param>
-        public static Vector3 ChangeX(this Vector3 v, float x)
+        public static ref Vector3 SetX(ref this Vector3 v, float x)
         {
-            return new Vector3(x, v.y, v.z);
+            v.x = x;
+            return ref v;
         }
 
         /// <summary>
@@ -39,9 +40,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="y">Target value for the Y vector.</param>
-        public static Vector3 ChangeY(this Vector3 v, float y)
+        public static ref Vector3 SetY(ref this Vector3 v, float y)
         {
-            return new Vector3(v.x, y, v.z);
+            v.y = y;
+            return ref v;
         }
 
         /// <summary>
@@ -49,72 +51,78 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="z">Target value for the Z vector.</param>
-        public static Vector3 ChangeZ(this Vector3 v, float z)
+        public static ref Vector3 SetZ(ref this Vector3 v, float z)
         {
-            return new Vector3(v.x, v.y, z);
+            v.z = z;
+            return ref v;
         }
 
         #endregion
 
-        #region Combine
+        #region Add
 
         /// <summary>
-        /// Combine the 2 Vectors3 into one.
+        /// Add the 2 Vectors3 into one.
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 that is a combination.</returns>
-        public static Vector3 CombineVector(this Vector3 v, Vector3 f)
+        public static ref Vector3 Add(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x + f.x, v.y + f.y, v.z + f.z);
+            v += f;
+            return ref v;
         }
         
         /// <summary>
-        /// Combine the X axis of two Vector3 into one.
+        /// Add the X axis of two Vector3 into one.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with combined X axis.</returns>
-        public static Vector3 CombineX(this Vector3 v, Vector3 f)
+        public static ref Vector3 AddX(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x + f.x, v.y, v.z);
+            v.x += f.x;
+            return ref v;
         }
 
         /// <summary>
-        /// Combine the Y axis of two Vector3 into one.
+        /// Add the Y axis of two Vector3 into one.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with combined Y axis.</returns>
-        public static Vector3 CombineY(this Vector3 v, Vector3 f)
+        public static ref Vector3 AddY(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y + f.y, v.z);
+            v.y += f.y;
+            return ref v;
         }
 
         /// <summary>
-        /// Combine the Z axis of two Vector3 into one.
+        /// Add the Z axis of two Vector3 into one.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with combined Z axis.</returns>
-        public static Vector3 CombineZ(this Vector3 v, Vector3 f)
+        public static ref Vector3 AddZ(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y, v.z + f.z);
+            v.z += f.z;
+            return ref v;
         }
 
         #endregion
 
-        #region Separate
+        #region Subtract
 
         /// <summary>
         /// Remove the the given Vector3 form this Vector3.
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 that is a separation.</returns>
-        public static Vector3 SeparateVector(this Vector3 v, Vector3 f)
+        /// <returns>A new Vector3 that is a subtraction.</returns>
+        public static ref Vector3 Subtract(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x - f.x, v.y - f.y, v.z - f.z);
+            v -= f;
+            return ref v;
         }
         
         /// <summary>
@@ -122,10 +130,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with separated X axis.</returns>
-        public static Vector3 SeparateX(this Vector3 v, Vector3 f)
+        /// <returns>A new Vector3 with subtraction X axis.</returns>
+        public static ref Vector3 SubtractX(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x - f.x, v.y, v.z);
+            v.x -= f.x;
+            return ref v;
         }
 
         /// <summary>
@@ -133,10 +142,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with separated Y axis.</returns>
-        public static Vector3 SeparateY(this Vector3 v, Vector3 f)
+        /// <returns>A new Vector3 with subtraction Y axis.</returns>
+        public static ref Vector3 SubtractY(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y - f.y, v.z);
+            v.y -= f.y;
+            return ref v;
         }
 
         /// <summary>
@@ -144,25 +154,29 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with separated Z axis.</returns>
-        public static Vector3 SeparateZ(this Vector3 v, Vector3 f)
+        /// <returns>A new Vector3 with subtraction Z axis.</returns>
+        public static ref Vector3 SubtractZ(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y, v.z - f.z);
+            v.z -= f.z;
+            return ref v;
         }
 
         #endregion
 
-        #region Multiple
+        #region Multiply
 
         /// <summary>
-        /// Multiple this Vector3 with the given Vector3.
+        /// Multiply this Vector3 with the given Vector3.
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 that is multiplied.</returns>
-        public static Vector3 MultipleVector(this Vector3 v, Vector3 f)
+        public static ref Vector3 Multiply(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x * f.x, v.y * f.y, v.z * f.z);
+            v.x *= f.x;
+            v.y *= f.y;
+            v.z *= f.z;
+            return ref v;
         }
         
         /// <summary>
@@ -171,9 +185,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with multiplied X axis.</returns>
-        public static Vector3 MultipleX(this Vector3 v, Vector3 f)
+        public static ref Vector3 MultiplyX(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x * f.x, v.y, v.z);
+            v.x *= f.x;
+            return ref v;
         }
 
         /// <summary>
@@ -182,9 +197,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with multiplied Y axis.</returns>
-        public static Vector3 MultipleY(this Vector3 v, Vector3 f)
+        public static ref Vector3 MultiplyY(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y * f.y, v.z);
+            v.y *= f.y;
+            return ref v;
         }
 
         /// <summary>
@@ -193,9 +209,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 with multiplied Z axis.</returns>
-        public static Vector3 MultipleZ(this Vector3 v, Vector3 f)
+        public static ref Vector3 MultiplyZ(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x, v.y, v.z * f.z);
+            v.z *= f.z;
+            return ref v;
         }
 
         #endregion
@@ -208,9 +225,12 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This vector3.</param>
         /// <param name="f">The f Vector3.</param>
         /// <returns>A new Vector3 that is division.</returns>
-        public static Vector3 DivideVector(this Vector3 v, Vector3 f)
+        public static ref Vector3 Divide(ref this Vector3 v, Vector3 f)
         {
-            return new Vector3(v.x / f.x, v.y / f.y, v.z / f.z);
+            v.x /= f.x;
+            v.y /= f.y;
+            v.z /= f.z;
+            return ref v;
         }
         
         /// <summary>
@@ -218,9 +238,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="x">Divider for the X vector.</param>
-        public static Vector3 DivideX(this Vector3 v, float x)
+        public static ref Vector3 DivideX(ref this Vector3 v, float x)
         {
-            return new Vector3(v.x / x, v.y, v.z);
+            v.x /= x;
+            return ref v;
         }
 
         /// <summary>
@@ -228,9 +249,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="y">Divider value for the Y vector.</param>
-        public static Vector3 DivideY(this Vector3 v, float y)
+        public static ref Vector3 DivideY(ref this Vector3 v, float y)
         {
-            return new Vector3(v.x, v.y / y, v.z);
+            v.y /= y;
+            return ref v;
         }
 
         /// <summary>
@@ -238,9 +260,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector3.</param>
         /// <param name="z">Divider value for the Z vector.</param>
-        public static Vector3 DivideZ(this Vector3 v, float z)
+        public static ref Vector3 DivideZ(ref this Vector3 v, float z)
         {
-            return new Vector3(v.x, v.y, v.z / z);
+            v.z /= z;
+            return ref v;
         }
 
         #endregion
@@ -299,7 +322,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
 
         #endregion
 
-        #region Random
+        #region Randomize
 
         /// <summary>
         /// Randomize the X, Y, and Z axes of this Vector3 within specified ranges.
@@ -309,13 +332,12 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="yRange">Range for the Y axis.</param>
         /// <param name="zRange">Range for the Z axis.</param>
         /// <returns>A new Vector3 with randomized axes.</returns>
-        public static Vector3 RandomizeVector(this Vector3 v, Vector2 xRange, Vector2 yRange, Vector2 zRange)
+        public static ref Vector3 Randomize(ref this Vector3 v, Vector2 xRange, Vector2 yRange, Vector2 zRange)
         {
-            return new Vector3(
-                Random.Range(xRange.x, xRange.y),
-                Random.Range(yRange.x, yRange.y),
-                Random.Range(zRange.x, zRange.y)
-            );
+            v.RandomizeX(xRange);
+            v.RandomizeY(yRange);
+            v.RandomizeZ(zRange);
+            return ref v;
         }
         
         /// <summary>
@@ -324,13 +346,12 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="range">Range for all axes.</param>
         /// <returns>A new Vector3 with randomized axes.</returns>
-        public static Vector3 RandomizeVector(this Vector3 v, Vector2 range)
+        public static ref Vector3 Randomize(ref this Vector3 v, Vector2 range)
         {
-            return new Vector3(
-                Random.Range(range.x, range.y),
-                Random.Range(range.x, range.y),
-                Random.Range(range.x, range.y)
-            );
+            v.RandomizeX(range);
+            v.RandomizeY(range);
+            v.RandomizeZ(range);
+            return ref v;
         }
         
         /// <summary>
@@ -339,10 +360,13 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="range">Range for all axes.</param>
         /// <returns>A new Vector3 with the same randomized value for all axes.</returns>
-        public static Vector3 RandomizeVectorUniform(this Vector3 v, Vector2 range)
+        public static ref Vector3 RandomizeUniform(ref this Vector3 v, Vector2 range)
         {
             float randomValue = Random.Range(range.x, range.y);
-            return new Vector3(randomValue, randomValue, randomValue);
+            v.x = randomValue;
+            v.y = randomValue;
+            v.z = randomValue;
+            return ref v;
         }
 
         /// <summary>
@@ -351,9 +375,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="xRange">Range for the X axis.</param>
         /// <returns>A new Vector3 with a randomized X axis.</returns>
-        public static Vector3 RandomizeX(this Vector3 v, Vector2 xRange)
+        public static ref Vector3 RandomizeX(ref this Vector3 v, Vector2 xRange)
         {
-            return new Vector3(Random.Range(xRange.x, xRange.y), v.y, v.z);
+            v.x = Random.Range(xRange.x, xRange.y);
+            return ref v;
         }
 
         /// <summary>
@@ -362,9 +387,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="yRange">Range for the Y axis.</param>
         /// <returns>A new Vector3 with a randomized Y axis.</returns>
-        public static Vector3 RandomizeY(this Vector3 v, Vector2 yRange)
+        public static ref Vector3 RandomizeY(ref this Vector3 v, Vector2 yRange)
         {
-            return new Vector3(v.x, Random.Range(yRange.x, yRange.y), v.z);
+            v.y = Random.Range(yRange.x, yRange.y);
+            return ref v;
         }
 
         /// <summary>
@@ -373,23 +399,27 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector3.</param>
         /// <param name="zRange">Range for the Z axis.</param>
         /// <returns>A new Vector3 with a randomized Z axis.</returns>
-        public static Vector3 RandomizeZ(this Vector3 v, Vector2 zRange)
+        public static ref Vector3 RandomizeZ(ref this Vector3 v, Vector2 zRange)
         {
-            return new Vector3(v.x, v.y, Random.Range(zRange.x, zRange.y));
+            v.z = Random.Range(zRange.x, zRange.y);
+            return ref v;
         }
         
         #endregion
 
-        #region Inverd
+        #region Invert
 
         /// <summary>
         /// Invert the X, Y, and Z axes of this Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <returns>The Vector3 with inverted axes.</returns>
-        public static Vector3 InvertVector(this Vector3 v)
+        public static ref Vector3 Invert(ref this Vector3 v)
         {
-            return new Vector3(-v.x, -v.y, -v.z);
+            v.x = -v.x;
+            v.y = -v.y;
+            v.z = -v.z;
+            return ref v;
         }
         
         /// <summary>
@@ -397,9 +427,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <returns>The Vector3 with the inverted X axis.</returns>
-        public static Vector3 InvertX(this Vector3 v)
+        public static ref Vector3 InvertX(ref this Vector3 v)
         {
-            return new Vector3(-v.x, v.y, v.z);
+            v.x = -v.x;
+            return ref v;
         }
 
         /// <summary>
@@ -407,9 +438,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <returns>The Vector3 with the inverted Y axis.</returns>
-        public static Vector3 InvertY(this Vector3 v)
+        public static ref Vector3 InvertY(ref this Vector3 v)
         {
-            return new Vector3(v.x, -v.y, v.z);
+            v.y = -v.y;
+            return ref v;
         }
 
         /// <summary>
@@ -417,9 +449,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <returns>The Vector3 with the inverted Z axis.</returns>
-        public static Vector3 InvertZ(this Vector3 v)
+        public static ref Vector3 InvertZ(ref this Vector3 v)
         {
-            return new Vector3(v.x, v.y, -v.z);
+            v.z = -v.z;
+            return ref v;
         }
 
         #endregion
@@ -434,7 +467,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <returns>The midpoint Vector3.</returns>
         public static Vector3 Midpoint(this Vector3 v, Vector3 f)
         {
-            return CombineVector(v, f) / 2f;
+            return v.Add(f) / 2;
         }
         
         /// <summary>
@@ -444,12 +477,15 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The second Vector3.</param>
         /// <param name="weight">Weight for the first Vector3. Should be in the range [0, 100], it's a percentage.</param>
         /// <returns>The weighted average Vector3.</returns>
-        public static Vector3 WeightedAverage(Vector3 v, Vector3 f, float weight)
+        public static Vector3 WeightedAverage(this Vector3 v, Vector3 f, float weight)
         {
-            const float a = 100f;
-            float b = a - weight;
+            const float totalWeight = 100f;
+            float weightF = totalWeight - weight;
 
-            return (v * weight + f * b) / (weight + b);
+            Vector3 weightedV = v * weight;
+            Vector3 weightedF = f * weightF;
+
+            return weightedV.Add(weightedF) / totalWeight;
         }
 
         #endregion
@@ -514,13 +550,14 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Change Axis
 
         /// <summary>
-        /// Change the X vector of this Vector2
+        /// Change the X vector of this Vector2 in place.
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="x">Target value for the X vector.</param>
-        public static Vector2 ChangeX(this Vector2 v, float x)
+        public static ref Vector2 SetX(ref this Vector2 v, float x)
         {
-            return new Vector2(x, v.y);
+            v.x = x;
+            return ref v;
         }
 
         /// <summary>
@@ -528,61 +565,68 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="y">Target value for the Y vector.</param>
-        public static Vector2 ChangeY(this Vector2 v, float y)
+        public static ref Vector2 SetY(ref this Vector2 v, float y)
         {
-            return new Vector2(v.x, y);
+            v.y = y;
+            return ref v;
         }
 
         #endregion
 
-        #region Combine
+        #region Add
 
         /// <summary>
-        /// Combine the 2 Vectors2 into one.
+        /// Add the 2 Vectors2 into one.
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 that is a combination.</returns>
-        public static Vector2 CombineVector(this Vector2 v, Vector2 f)
+        public static ref Vector2 Add(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x + f.x, v.y + f.y);
+            v.x += f.x;
+            v.y += f.y;
+            return ref v;
         }
 
         /// <summary>
-        /// Combine the X axis of two Vector2 into one.
+        /// Add the X axis of two Vector2 into one.
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 with combined X axis.</returns>
-        public static Vector2 CombineX(this Vector2 v, Vector2 f)
+        public static ref Vector2 AddX(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x + f.x, v.y);
+            v.x += f.x;
+            return ref v;
         }
 
         /// <summary>
-        /// Combine the Y axis of two Vector2 into one.
+        /// Add the Y axis of two Vector2 into one.
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 with combined Y axis.</returns>
-        public static Vector2 CombineY(this Vector2 v, Vector2 f)
+        public static ref Vector2 AddY(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x, v.y + f.y);
+            v.y += f.y;
+            return ref v;
         }
 
         #endregion
 
-        #region Separate
+        #region Subtract
 
         /// <summary>
         /// Remove the given Vector2 from this Vector2.
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 that is a separation.</returns>
-        public static Vector2 SeparateVector(this Vector2 v, Vector2 f)
+        /// <returns>A new Vector2 that is a subtraction.</returns>
+        public static ref Vector2 Subtract(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x - f.x, v.y - f.y);
+            v.x -= f.x;
+            v.y -= f.y;
+            return ref v;
         }
 
         /// <summary>
@@ -590,10 +634,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with separated X axis.</returns>
-        public static Vector2 SeparateX(this Vector2 v, Vector2 f)
+        /// <returns>A new Vector2 with subtraction X axis.</returns>
+        public static ref Vector2 SubtractX(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x - f.x, v.y);
+            v.x -= f.x;
+            return ref v;
         }
 
         /// <summary>
@@ -601,15 +646,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with separated Y axis.</returns>
-        public static Vector2 SeparateY(this Vector2 v, Vector2 f)
+        /// <returns>A new Vector2 with subtraction Y axis.</returns>
+        public static ref Vector2 SubtractY(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x, v.y - f.y);
+            v.y -= f.y;
+            return ref v;
         }
 
         #endregion
 
-        #region Multiple
+        #region Multiply
 
         /// <summary>
         /// Multiply this Vector2 with the given Vector2.
@@ -617,9 +663,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 that is multiplied.</returns>
-        public static Vector2 MultipleVector(this Vector2 v, Vector2 f)
+        public static ref Vector2 Multiply(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x * f.x, v.y * f.y);
+            v.x *= f.x;
+            v.y *= f.y;
+            return ref v;
         }
 
         /// <summary>
@@ -628,9 +676,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 with multiplied X axis.</returns>
-        public static Vector2 MultipleX(this Vector2 v, Vector2 f)
+        public static ref Vector2 MultiplyX(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x * f.x, v.y);
+            v.x *= f.x;
+            return ref v;
         }
 
         /// <summary>
@@ -639,9 +688,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector2 with multiplied Y axis.</returns>
-        public static Vector2 MultipleY(this Vector2 v, Vector2 f)
+        public static ref Vector2 MultiplyY(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x, v.y * f.y);
+            v.y *= f.y;
+            return ref v;
         }
 
         #endregion
@@ -654,9 +704,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This vector2.</param>
         /// <param name="f">The f Vector2.</param>
         /// <returns>A new Vector3 that is division.</returns>
-        public static Vector2 DivideVector(this Vector2 v, Vector2 f)
+        public static ref Vector2 Divide(ref this Vector2 v, Vector2 f)
         {
-            return new Vector2(v.x / f.x, v.y / f.y);
+            v.x /= f.x;
+            v.y /= f.y;
+            return ref v;
         }
 
         /// <summary>
@@ -664,9 +716,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="x">Divider for the X vector.</param>
-        public static Vector2 DivideX(this Vector2 v, float x)
+        public static ref Vector2 DivideX(ref this Vector2 v, float x)
         {
-            return new Vector2(v.x / x, v.y);
+            v.x /= x;
+            return ref v;
         }
 
         /// <summary>
@@ -674,9 +727,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This vector2.</param>
         /// <param name="y">Divider value for the Y vector.</param>
-        public static Vector2 DivideY(this Vector2 v, float y)
+        public static ref Vector2 DivideY(ref this Vector2 v, float y)
         {
-            return new Vector2(v.x, v.y / y);
+            v.y /= y;
+            return ref v;
         }
 
         #endregion
@@ -722,7 +776,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
 
         #endregion
 
-        #region Random
+        #region Randomize
 
         /// <summary>
         /// Randomize the X, Y, and Z axes of this Vector2 within specified ranges.
@@ -731,12 +785,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="xRange">Range for the X axis.</param>
         /// <param name="yRange">Range for the Y axis.</param>
         /// <returns>A new Vector2 with randomized axes.</returns>
-        public static Vector2 RandomizeVector(this Vector2 v, Vector2 xRange, Vector2 yRange)
+        public static ref Vector2 Randomize(ref this Vector2 v, Vector2 xRange, Vector2 yRange)
         {
-            return new Vector2(
-                Random.Range(xRange.x, xRange.y),
-                Random.Range(yRange.x, yRange.y)
-            );
+            v.RandomizeX(xRange);
+            v.RandomizeY(yRange);
+            return ref v;
         }
         
         /// <summary>
@@ -745,12 +798,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="range">Range for X and Y components.</param>
         /// <returns>A new Vector2 with randomized X and Y components.</returns>
-        public static Vector2 RandomizeVector(this Vector2 v, Vector2 range)
+        public static ref Vector2 Randomize(ref this Vector2 v, Vector2 range)
         {
-            return new Vector2(
-                Random.Range(range.x, range.y),
-                Random.Range(range.x, range.y)
-            );
+            v.RandomizeX(range);
+            v.RandomizeY(range);
+            return ref v;
         }
 
         /// <summary>
@@ -759,10 +811,12 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="range">Range for both components.</param>
         /// <returns>A new Vector2 with the same randomized value for both components.</returns>
-        public static Vector2 RandomizeVectorUniform(this Vector2 v, Vector2 range)
+        public static ref Vector2 RandomizeUniform(ref this Vector2 v, Vector2 range)
         {
             float randomValue = Random.Range(range.x, range.y);
-            return new Vector2(randomValue, randomValue);
+            v.x = randomValue;
+            v.y = randomValue;
+            return ref v;
         }
 
         /// <summary>
@@ -771,9 +825,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="xRange">Range for the X axis.</param>
         /// <returns>A new Vector2 with a randomized X axis.</returns>
-        public static Vector2 RandomizeX(this Vector2 v, Vector2 xRange)
+        public static ref Vector2 RandomizeX(ref this Vector2 v, Vector2 xRange)
         {
-            return new Vector2(Random.Range(xRange.x, xRange.y), v.y);
+            v.x = Random.Range(xRange.x, xRange.y);
+            return ref v;
         }
 
         /// <summary>
@@ -782,9 +837,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="v">This Vector2.</param>
         /// <param name="yRange">Range for the Y axis.</param>
         /// <returns>A new Vector2 with a randomized Y axis.</returns>
-        public static Vector2 RandomizeY(this Vector2 v, Vector2 yRange)
+        public static ref Vector2 RandomizeY(ref this Vector2 v, Vector2 yRange)
         {
-            return new Vector2(v.x, Random.Range(yRange.x, yRange.y));
+            v.y = Random.Range(yRange.x, yRange.y);
+            return ref v;
         }
 
         #endregion
@@ -796,9 +852,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <returns>The Vector2 with inverted axes.</returns>
-        public static Vector2 InvertVector(this Vector2 v)
+        public static ref Vector2 Invert(ref this Vector2 v)
         {
-            return new Vector2(-v.x, -v.y);
+            v.x = -v.x;
+            v.y = -v.y;
+            return ref v;
         }
 
         /// <summary>
@@ -806,9 +864,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <returns>The Vector2 with the inverted X axis.</returns>
-        public static Vector2 InvertX(this Vector2 v)
+        public static ref Vector2 InvertX(ref this Vector2 v)
         {
-            return new Vector2(-v.x, v.y);
+            v.x = -v.x;
+            return ref v;
         }
 
         /// <summary>
@@ -816,9 +875,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <returns>The Vector2 with the inverted Y axis.</returns>
-        public static Vector2 InvertY(this Vector2 v)
+        public static ref Vector2 InvertY(ref this Vector2 v)
         {
-            return new Vector2(v.x, -v.y);
+            v.y = -v.y;
+            return ref v;
         }
 
         #endregion
@@ -833,7 +893,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <returns>The midpoint Vector2.</returns>
         public static Vector2 Midpoint(this Vector2 v, Vector2 f)
         {
-            return CombineVector(v, f) / 2f;
+            return v.Add(f) / 2;
         }
 
         /// <summary>
@@ -843,12 +903,15 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The second Vector2.</param>
         /// <param name="weight">Weight for the first Vector2. Should be in the range [0, 100], it's a percentage.</param>
         /// <returns>The weighted average Vector2.</returns>
-        public static Vector2 WeightedAverage(Vector2 v, Vector2 f, float weight)
+        public static Vector2 WeightedAverage(this Vector2 v, Vector2 f, float weight)
         {
-            const float a = 100f;
-            float b = a - weight;
+            const float totalWeight = 100f;
+            float weightF = totalWeight - weight;
 
-            return (v * weight + f * b) / (weight + b);
+            Vector2 weightedV = v * weight;
+            Vector2 weightedF = f * weightF;
+
+            return weightedV.Add(weightedF) / totalWeight;
         }
 
         #endregion
