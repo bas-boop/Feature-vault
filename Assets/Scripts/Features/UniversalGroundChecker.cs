@@ -10,6 +10,8 @@ namespace Baz_geluk9.Feature_vault.Feature
     /// </summary>
     public sealed class UniversalGroundChecker : MonoBehaviour
     {
+        #region SerializeField fields
+        
         [Header("Usage")]
         [SerializeField, Tooltip("True for 3D settings.\nFalse for 2D settings.")] private bool is3D = true;
         [SerializeField, Tooltip("True for line.\nFalse for sphere.")] private bool lineOrSphere = true;
@@ -25,13 +27,12 @@ namespace Baz_geluk9.Feature_vault.Feature
         
         [Header("Debug")]
         [SerializeField] private bool isGrounded;
-        public bool IsGrounded { get => isGrounded; private set => isGrounded = value; }
         [SerializeField] private bool gizmos;
         [SerializeField] private Color gizmosColor = Color.cyan;
         
-        [Space(20)]
-        [SerializeField] private UnityEvent onGroundEnter = new ();
-        [SerializeField] private UnityEvent onGroundLeave = new ();
+        #endregion
+
+        #region Private fields
 
         private enum GroundedState
         {
@@ -39,13 +40,29 @@ namespace Baz_geluk9.Feature_vault.Feature
             AIRED
         }
 
-        private bool _isOnGround;
-        private bool _isLeavingGround;
+        private bool _isOnGround = false;
+        private bool _isLeavingGround = true;
         
         private GroundedState _currentState;
 
         private Vector2 _origin2D;
         private Vector3 _origin3D;
+
+        #endregion
+
+        #region Properties
+
+        public bool IsGrounded { get => isGrounded; private set => isGrounded = value; }
+
+        #endregion
+        
+        #region Events
+        
+        [Space(20)]
+        [SerializeField] private UnityEvent onGroundEnter = new ();
+        [SerializeField] private UnityEvent onGroundLeave = new ();
+        
+        #endregion
 
         private void FixedUpdate()
         {
@@ -55,13 +72,15 @@ namespace Baz_geluk9.Feature_vault.Feature
 
         private void CalculateGroundRayCasting()
         {
-            _origin3D = !offSetOrTransform
-                ? transform.position + offSet3D
-                : groundCheckerTransform != null ? groundCheckerTransform.position : Vector3.zero;
-
-            _origin2D = !offSetOrTransform
-                ? (Vector2)transform.position + offSet2D
-                : groundCheckerTransform != null ? groundCheckerTransform.position : Vector2.zero;
+            if (is3D)
+                _origin3D = !offSetOrTransform
+                    ? transform.position + offSet3D
+                    : groundCheckerTransform != null ? groundCheckerTransform.position : Vector3.zero;
+            else
+                _origin2D = !offSetOrTransform
+                    ? (Vector2)transform.position + offSet2D
+                    : groundCheckerTransform != null ? groundCheckerTransform.position : Vector2.zero;
+            
 
             IsGrounded = GetGround();
         }
@@ -90,10 +109,12 @@ namespace Baz_geluk9.Feature_vault.Feature
                 case GroundedState.GROUNDED when !_isOnGround:
                     onGroundEnter?.Invoke();
                     _isOnGround = true;
+                    _isLeavingGround = false;
                     break;
-                case GroundedState.GROUNDED when !_isLeavingGround:
+                case GroundedState.AIRED when !_isLeavingGround:
                     onGroundLeave?.Invoke();
                     _isLeavingGround = true;
+                    _isOnGround = false;
                     break;
             }
         }

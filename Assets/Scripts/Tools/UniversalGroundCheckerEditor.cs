@@ -54,16 +54,11 @@ namespace Baz_geluk9.Feature_vault.Tool
 
             EditorGUILayout.PropertyField(_lineOrSphere.boolValue ? _rayLenght : _rayRadius);
 
-            switch (_offSetOrTransform.boolValue)
-            {
-                case false:
-                    EditorGUILayout.PropertyField(_is3D.boolValue ? _offSet3D : _offSet2D);
-                    break;
-                case true:
-                    EditorGUILayout.PropertyField(_transform);
-                    break;
-            }
-            
+            if (_offSetOrTransform.boolValue)
+                EditorGUILayout.PropertyField(_transform);
+            else
+                EditorGUILayout.PropertyField(_is3D.boolValue ? _offSet3D : _offSet2D);
+
             EditorGUILayout.PropertyField(_isGrounded);
             EditorGUILayout.PropertyField(_gizmos);
             EditorGUILayout.PropertyField(_gizmosColor);
