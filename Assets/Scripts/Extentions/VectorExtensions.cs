@@ -5,7 +5,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
     /// <summary>
     /// Provides versatile extensions for Vector2 and Vector3, enhancing functionality for various operations.
     /// Ideal for integration into any Unity project.
-    /// Features:
+    /// Extensions:
     /// - Set Axis
     /// - Divide Vector & Axis
     /// - Add Vector & Axis
@@ -62,50 +62,84 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Add
 
         /// <summary>
-        /// Add the 2 Vectors3 into one.
+        /// Add the Axis of two Vector3 into one.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 that is a combination.</returns>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to add.</param>
+        /// <returns>A new Vector3 with combined Axis.</returns>
         public static ref Vector3 Add(ref this Vector3 v, Vector3 f)
         {
             v += f;
             return ref v;
         }
-        
+
         /// <summary>
-        /// Add the X axis of two Vector3 into one.
+        /// Add the specified values to the Axis of this Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with combined X axis.</returns>
-        public static ref Vector3 AddX(ref this Vector3 v, Vector3 f)
+        /// <param name="x">The value to add to the X Axis.</param>
+        /// <param name="y">The value to add to the Y Axis.</param>
+        /// <param name="z">The value to add to the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Axis.</returns>
+        public static ref Vector3 Add(ref this Vector3 v, float x, float y, float z) => ref v.AddX(x).AddY(y).AddZ(z);
+
+        /// <summary>
+        /// Add the X Axis of two Vector3 into one.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to add.</param>
+        /// <returns>A new Vector3 with combined X Axis.</returns>
+        public static ref Vector3 AddX(ref this Vector3 v, Vector3 f) => ref v.AddX(f.x);
+
+        /// <summary>
+        /// Add the specified value to the X Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to add to the X Axis.</param>
+        /// <returns>A new Vector3 with updated X Axis.</returns>
+        public static ref Vector3 AddX(ref this Vector3 v, float x)
         {
-            v.x += f.x;
+            v.x += x;
             return ref v;
         }
 
         /// <summary>
-        /// Add the Y axis of two Vector3 into one.
+        /// Add the Y Axis of two Vector3 into one.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with combined Y axis.</returns>
-        public static ref Vector3 AddY(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to add.</param>
+        /// <returns>A new Vector3 with combined Y Axis.</returns>
+        public static ref Vector3 AddY(ref this Vector3 v, Vector3 f) => ref v.AddY(f.y);
+
+        /// <summary>
+        /// Add the specified value to the Y Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="y">The value to add to the Y Axis.</param>
+        /// <returns>A new Vector3 with updated Y Axis.</returns>
+        public static ref Vector3 AddY(ref this Vector3 v, float y)
         {
-            v.y += f.y;
+            v.y += y;
             return ref v;
         }
 
         /// <summary>
-        /// Add the Z axis of two Vector3 into one.
+        /// Add the Z Axis of two Vector3 into one.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with combined Z axis.</returns>
-        public static ref Vector3 AddZ(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to add.</param>
+        /// <returns>A new Vector3 with combined Z Axis.</returns>
+        public static ref Vector3 AddZ(ref this Vector3 v, Vector3 f) => ref v.AddZ(f.z);
+
+        /// <summary>
+        /// Add the specified value to the Z Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="z">The value to add to the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Z Axis.</returns>
+        public static ref Vector3 AddZ(ref this Vector3 v, float z)
         {
-            v.z += f.z;
+            v.z += z;
             return ref v;
         }
 
@@ -114,130 +148,205 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Subtract
 
         /// <summary>
-        /// Remove the the given Vector3 form this Vector3.
+        /// Subtract the Axis of the second Vector3 from the first Vector3 and return the result.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 that is a subtraction.</returns>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to subtract.</param>
+        /// <returns>A new Vector3 with subtracted Axis.</returns>
         public static ref Vector3 Subtract(ref this Vector3 v, Vector3 f)
         {
             v -= f;
             return ref v;
         }
-        
+
         /// <summary>
-        /// Separate the X axis of the second Vector3 from the first Vector3.
+        /// Subtract the specified values from the Axis of this Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with subtraction X axis.</returns>
-        public static ref Vector3 SubtractX(ref this Vector3 v, Vector3 f)
+        /// <param name="x">The value to subtract from the X Axis.</param>
+        /// <param name="y">The value to subtract from the Y Axis.</param>
+        /// <param name="z">The value to subtract from the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Axis.</returns>
+        public static ref Vector3 Subtract(ref this Vector3 v, float x, float y, float z) => ref v.SubtractX(x).SubtractY(y).SubtractZ(z);
+
+        /// <summary>
+        /// Subtract the X Axis of the second Vector3 from the first Vector3 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to subtract.</param>
+        /// <returns>A new Vector3 with subtracted X Axis.</returns>
+        public static ref Vector3 SubtractX(ref this Vector3 v, Vector3 f) => ref v.SubtractX(f.x);
+
+        /// <summary>
+        /// Subtract the specified value from the X Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to subtract from the X Axis.</param>
+        /// <returns>A new Vector3 with updated X Axis.</returns>
+        public static ref Vector3 SubtractX(ref this Vector3 v, float x)
         {
-            v.x -= f.x;
+            v.x -= x;
             return ref v;
         }
 
         /// <summary>
-        /// Separate the Y axis of the second Vector3 from the first Vector3.
+        /// Subtract the Y Axis of the second Vector3 from the first Vector3 and return the result.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with subtraction Y axis.</returns>
-        public static ref Vector3 SubtractY(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to subtract.</param>
+        /// <returns>A new Vector3 with subtracted Y Axis.</returns>
+        public static ref Vector3 SubtractY(ref this Vector3 v, Vector3 f) => ref v.SubtractY(f.y);
+
+        /// <summary>
+        /// Subtract the specified value from the Y Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="y">The value to subtract from the Y Axis.</param>
+        /// <returns>A new Vector3 with updated Y Axis.</returns>
+        public static ref Vector3 SubtractY(ref this Vector3 v, float y)
         {
-            v.y -= f.y;
+            v.y -= y;
             return ref v;
         }
 
         /// <summary>
-        /// Separate the Z axis of the second Vector3 from the first Vector3.
+        /// Subtract the Z Axis of the second Vector3 from the first Vector3 and return the result.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with subtraction Z axis.</returns>
-        public static ref Vector3 SubtractZ(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to subtract.</param>
+        /// <returns>A new Vector3 with subtracted Z Axis.</returns>
+        public static ref Vector3 SubtractZ(ref this Vector3 v, Vector3 f) => ref v.SubtractZ(f.z);
+
+        /// <summary>
+        /// Subtract the specified value from the Z Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="z">The value to subtract from the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Z Axis.</returns>
+        public static ref Vector3 SubtractZ(ref this Vector3 v, float z)
         {
-            v.z -= f.z;
+            v.z -= z;
             return ref v;
         }
 
         #endregion
-
+        
         #region Multiply
 
         /// <summary>
-        /// Multiply this Vector3 with the given Vector3.
-        /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 that is multiplied.</returns>
-        public static ref Vector3 Multiply(ref this Vector3 v, Vector3 f)
-        {
-            v.x *= f.x;
-            v.y *= f.y;
-            v.z *= f.z;
-            return ref v;
-        }
-        
-        /// <summary>
-        /// Multiply the X axis of this Vector3 by the X axis of another Vector3.
+        /// Multiply the Axis of this Vector3 with the corresponding Axis of another Vector3 and return the result.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with multiplied X axis.</returns>
-        public static ref Vector3 MultiplyX(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to multiply.</param>
+        /// <returns>A new Vector3 with multiplied Axis.</returns>
+        public static ref Vector3 Multiply(ref this Vector3 v, Vector3 f) => ref v.MultiplyX(f.x).MultiplyY(f.y).MultiplyZ(f.z);
+
+        /// <summary>
+        /// Multiply the specified values with the Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to multiply with the X Axis.</param>
+        /// <param name="y">The value to multiply with the Y Axis.</param>
+        /// <param name="z">The value to multiply with the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Axis.</returns>
+        public static ref Vector3 Multiply(ref this Vector3 v, float x, float y, float z) => ref v.MultiplyX(x).MultiplyY(y).MultiplyZ(z);
+
+        /// <summary>
+        /// Multiply the X Axis of this Vector3 with the X Axis of another Vector3 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to multiply.</param>
+        /// <returns>A new Vector3 with multiplied X Axis.</returns>
+        public static ref Vector3 MultiplyX(ref this Vector3 v, Vector3 f) => ref v.MultiplyX(f.x);
+
+        /// <summary>
+        /// Multiply the specified value with the X Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to multiply with the X Axis.</param>
+        /// <returns>A new Vector3 with updated X Axis.</returns>
+        public static ref Vector3 MultiplyX(ref this Vector3 v, float x)
         {
-            v.x *= f.x;
+            v.x *= x;
             return ref v;
         }
 
         /// <summary>
-        /// Multiply the Y axis of this Vector3 by the Y axis of another Vector3.
+        /// Multiply the Y Axis of this Vector3 with the Y Axis of another Vector3 and return the result.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with multiplied Y axis.</returns>
-        public static ref Vector3 MultiplyY(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to multiply.</param>
+        /// <returns>A new Vector3 with multiplied Y Axis.</returns>
+        public static ref Vector3 MultiplyY(ref this Vector3 v, Vector3 f) => ref v.MultiplyY(f.y);
+
+        /// <summary>
+        /// Multiply the specified value with the Y Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="y">The value to multiply with the Y Axis.</param>
+        /// <returns>A new Vector3 with updated Y Axis.</returns>
+        public static ref Vector3 MultiplyY(ref this Vector3 v, float y)
         {
-            v.y *= f.y;
+            v.y *= y;
             return ref v;
         }
 
         /// <summary>
-        /// Multiply the Z axis of this Vector3 by the Z axis of another Vector3.
+        /// Multiply the Z Axis of this Vector3 with the Z Axis of another Vector3 and return the result.
         /// </summary>
         /// <param name="v">This Vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 with multiplied Z axis.</returns>
-        public static ref Vector3 MultiplyZ(ref this Vector3 v, Vector3 f)
+        /// <param name="f">The Vector3 to multiply.</param>
+        /// <returns>A new Vector3 with multiplied Z Axis.</returns>
+        public static ref Vector3 MultiplyZ(ref this Vector3 v, Vector3 f) => ref v.MultiplyZ(f.z);
+
+        /// <summary>
+        /// Multiply the specified value with the Z Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="z">The value to multiply with the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Z Axis.</returns>
+        public static ref Vector3 MultiplyZ(ref this Vector3 v, float z)
         {
-            v.z *= f.z;
+            v.z *= z;
             return ref v;
         }
 
         #endregion
-        
+
         #region Divide
 
         /// <summary>
-        /// Divide this Vector3 with the given Vector3.
+        /// Divide the Axis of this Vector3 by the corresponding Axis of another Vector3 and return the result.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="f">The f Vector3.</param>
-        /// <returns>A new Vector3 that is division.</returns>
-        public static ref Vector3 Divide(ref this Vector3 v, Vector3 f)
-        {
-            v.x /= f.x;
-            v.y /= f.y;
-            v.z /= f.z;
-            return ref v;
-        }
-        
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to divide by.</param>
+        /// <returns>A new Vector3 with divided Axis.</returns>
+        public static ref Vector3 Divide(ref this Vector3 v, Vector3 f) => ref v.DivideX(f.x).DivideY(f.y).DivideZ(f.z);
+
         /// <summary>
-        /// Divide the X vector of this Vector3
+        /// Divide the specified values by the Axis of this Vector3.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="x">Divider for the X vector.</param>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to divide by the X Axis.</param>
+        /// <param name="y">The value to divide by the Y Axis.</param>
+        /// <param name="z">The value to divide by the Z Axis.</param>
+        /// <returns>A new Vector3 with updated Axis.</returns>
+        public static ref Vector3 Divide(ref this Vector3 v, float x, float y, float z) => ref v.DivideX(x).DivideY(y).DivideZ(z);
+
+        /// <summary>
+        /// Divide the X Axis of this Vector3 by the X Axis of another Vector3 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to divide by.</param>
+        /// <returns>A new Vector3 with divided X Axis.</returns>
+        public static ref Vector3 DivideX(ref this Vector3 v, Vector3 f) => ref v.DivideX(f.x);
+
+        /// <summary>
+        /// Divide the X Axis of this Vector3 by the specified value and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to divide by.</param>
+        /// <returns>A new Vector3 with updated X Axis.</returns>
         public static ref Vector3 DivideX(ref this Vector3 v, float x)
         {
             v.x /= x;
@@ -245,10 +354,19 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Change the Y vector of this Vector3.
+        /// Divide the Y Axis of this Vector3 by the Y Axis of another Vector3 and return the result.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="y">Divider value for the Y vector.</param>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to divide by.</param>
+        /// <returns>A new Vector3 with divided Y Axis.</returns>
+        public static ref Vector3 DivideY(ref this Vector3 v, Vector3 f) => ref v.DivideY(f.y);
+
+        /// <summary>
+        /// Divide the Y Axis of this Vector3 by the specified value and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="y">The value to divide by.</param>
+        /// <returns>A new Vector3 with updated Y Axis.</returns>
         public static ref Vector3 DivideY(ref this Vector3 v, float y)
         {
             v.y /= y;
@@ -256,10 +374,19 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Change the Z vector of this Vector3.
+        /// Divide the Z Axis of this Vector3 by the Z Axis of another Vector3 and return the result.
         /// </summary>
-        /// <param name="v">This vector3.</param>
-        /// <param name="z">Divider value for the Z vector.</param>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="f">The Vector3 to divide by.</param>
+        /// <returns>A new Vector3 with divided Z Axis.</returns>
+        public static ref Vector3 DivideZ(ref this Vector3 v, Vector3 f) => ref v.DivideZ(f.z);
+
+        /// <summary>
+        /// Divide the Z Axis of this Vector3 by the specified value and return the result.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="z">The value to divide by.</param>
+        /// <returns>A new Vector3 with updated Z Axis.</returns>
         public static ref Vector3 DivideZ(ref this Vector3 v, float z)
         {
             v.z /= z;
@@ -267,7 +394,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         #endregion
-
+        
         #region Compare
 
         /// <summary>
@@ -279,11 +406,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <returns>True if the vectors are approximately equal within the specified margin.</returns>
         public static bool Compare(this Vector3 v, Vector3 f, float margin = 0.0001f)
         {
-            return Mathf.Abs(v.x - f.x) < margin
-                   && Mathf.Abs(v.y - f.y) < margin
-                   && Mathf.Abs(v.z - f.z) < margin;
+            return v.CompareX(f.x, margin)
+                   && v.CompareY(f.y, margin)
+                   && v.CompareZ(f.x, margin);
         }
-        
+
         /// <summary>
         /// Compare the X axis of two Vector3 with an optional margin for floating-point precision.
         /// </summary>
@@ -291,10 +418,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The f Vector3 to compare with.</param>
         /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
         /// <returns>True if the X axes are approximately equal within the specified margin.</returns>
-        public static bool CompareX(this Vector3 v, Vector3 f, float margin = 0.0001f)
-        {
-            return Mathf.Abs(v.x - f.x) < margin;
-        }
+        public static bool CompareX(this Vector3 v, Vector3 f, float margin = 0.0001f) => v.CompareX(f.x, margin);
+        
+        /// <summary>
+        /// Compare a float value with the X Axis of this Vector3 with an optional margin for floating-point precision.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The float value to compare with the X Axis.</param>
+        /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
+        /// <returns>True if the X Axis is approximately equal to the specified float value within the margin.</returns>
+        public static bool CompareX(this Vector3 v, float x, float margin = 0.0001f) => Mathf.Abs(v.x - x) < margin;
 
         /// <summary>
         /// Compare the Y axis of two Vector3 with an optional margin for floating-point precision.
@@ -303,10 +436,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The f Vector3 to compare with.</param>
         /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
         /// <returns>True if the Y axes are approximately equal within the specified margin.</returns>
-        public static bool CompareY(this Vector3 v, Vector3 f, float margin = 0.0001f)
-        {
-            return Mathf.Abs(v.y - f.y) < margin;
-        }
+        public static bool CompareY(this Vector3 v, Vector3 f, float margin = 0.0001f) => v.CompareY(f.y, margin);
+        
+        /// <summary>
+        /// Compare a float value with the Y Axis of this Vector3 with an optional margin for floating-point precision.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="y">The float value to compare with the Y Axis.</param>
+        /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
+        /// <returns>True if the Y Axis is approximately equal to the specified float value within the margin.</returns>
+        public static bool CompareY(this Vector3 v, float y, float margin = 0.0001f) => Mathf.Abs(v.y - y) < margin;
 
         /// <summary>
         /// Compare the Z axis of two Vector3 with an optional margin for floating-point precision.
@@ -315,10 +454,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The f Vector3 to compare with.</param>
         /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
         /// <returns>True if the Z axes are approximately equal within the specified margin.</returns>
-        public static bool CompareZ(this Vector3 v, Vector3 f, float margin = 0.0001f)
-        {
-            return Mathf.Abs(v.z - f.z) < margin;
-        }
+        public static bool CompareZ(this Vector3 v, Vector3 f, float margin = 0.0001f) => v.CompareZ(f.z, margin);
+
+        /// <summary>
+        /// Compare a float value with the Z Axis of this Vector3 with an optional margin for floating-point precision.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="z">The float value to compare with the Z Axis.</param>
+        /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
+        /// <returns>True if the Z Axis is approximately equal to the specified float value within the margin.</returns>
+        public static bool CompareZ(this Vector3 v, float z, float margin = 0.0001f) => Mathf.Abs(v.z - z) < margin;
 
         #endregion
 
@@ -414,13 +559,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <returns>The Vector3 with inverted axes.</returns>
-        public static ref Vector3 Invert(ref this Vector3 v)
-        {
-            v.x = -v.x;
-            v.y = -v.y;
-            v.z = -v.z;
-            return ref v;
-        }
+        public static ref Vector3 Invert(ref this Vector3 v) => ref v.InvertX().InvertY().InvertZ();
         
         /// <summary>
         /// Invert the X axis of this Vector3.
@@ -506,36 +645,36 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Checks if the X component of this Vector3 is within the specified range of the X component of another Vector3.
+        /// Checks if the X Axis of this Vector3 is within the specified range of the X Axis of another Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3 to compare with.</param>
-        /// <param name="range">The range within which the X components are considered "within."</param>
-        /// <returns>True if the X components are within the specified range; otherwise, false.</returns>
+        /// <param name="range">The range within which the X Axis are considered "within."</param>
+        /// <returns>True if the X Axis are within the specified range; otherwise, false.</returns>
         public static bool IsXWithinRange(this Vector3 v, Vector3 f, float range)
         {
             return Mathf.Abs(v.x - f.x) <= range;
         }
 
         /// <summary>
-        /// Checks if the Y component of this Vector3 is within the specified range of the Y component of another Vector3.
+        /// Checks if the Y Axis of this Vector3 is within the specified range of the Y Axis of another Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3 to compare with.</param>
-        /// <param name="range">The range within which the Y components are considered "within."</param>
-        /// <returns>True if the Y components are within the specified range; otherwise, false.</returns>
+        /// <param name="range">The range within which the Y Axis are considered "within."</param>
+        /// <returns>True if the Y Axis are within the specified range; otherwise, false.</returns>
         public static bool IsYWithinRange(this Vector3 v, Vector3 f, float range)
         {
             return Mathf.Abs(v.y - f.y) <= range;
         }
 
         /// <summary>
-        /// Checks if the Z component of this Vector3 is within the specified range of the Z component of another Vector3.
+        /// Checks if the Z Axis of this Vector3 is within the specified range of the Z Axis of another Vector3.
         /// </summary>
         /// <param name="v">This Vector3.</param>
         /// <param name="f">The f Vector3 to compare with.</param>
-        /// <param name="range">The range within which the Z components are considered "within."</param>
-        /// <returns>True if the Z components are within the specified range; otherwise, false.</returns>
+        /// <param name="range">The range within which the Z Axis are considered "within."</param>
+        /// <returns>True if the Z Axis are within the specified range; otherwise, false.</returns>
         public static bool IsZWithinRange(this Vector3 v, Vector3 f, float range)
         {
             return Mathf.Abs(v.z - f.z) <= range;
@@ -576,39 +715,63 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Add
 
         /// <summary>
-        /// Add the 2 Vectors2 into one.
+        /// Add the Axis of two Vector2 into one.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 that is a combination.</returns>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to add.</param>
+        /// <returns>A new Vector2 with combined Axis.</returns>
         public static ref Vector2 Add(ref this Vector2 v, Vector2 f)
         {
-            v.x += f.x;
-            v.y += f.y;
+            v += f;
             return ref v;
         }
 
         /// <summary>
-        /// Add the X axis of two Vector2 into one.
+        /// Add the specified values to the Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to add to the X Axis.</param>
+        /// <param name="y">The value to add to the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Axis.</returns>
+        public static ref Vector2 Add(ref this Vector2 v, float x, float y) => ref v.AddX(x).AddY(y);
+
+        /// <summary>
+        /// Add the X Axis of two Vector2 into one.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with combined X axis.</returns>
-        public static ref Vector2 AddX(ref this Vector2 v, Vector2 f)
+        /// <param name="f">The Vector2 to add.</param>
+        /// <returns>A new Vector2 with combined X Axis.</returns>
+        public static ref Vector2 AddX(ref this Vector2 v, Vector2 f) => ref v.AddX(f.x);
+
+        /// <summary>
+        /// Add the specified value to the X Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The value to add to the X Axis.</param>
+        /// <returns>A new Vector2 with updated X Axis.</returns>
+        public static ref Vector2 AddX(ref this Vector2 v, float x)
         {
-            v.x += f.x;
+            v.x += x;
             return ref v;
         }
 
         /// <summary>
-        /// Add the Y axis of two Vector2 into one.
+        /// Add the Y Axis of two Vector2 into one.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with combined Y axis.</returns>
-        public static ref Vector2 AddY(ref this Vector2 v, Vector2 f)
+        /// <param name="f">The Vector2 to add.</param>
+        /// <returns>A new Vector2 with combined Y Axis.</returns>
+        public static ref Vector2 AddY(ref this Vector2 v, Vector2 f) => ref v.AddY(f.y);
+
+        /// <summary>
+        /// Add the specified value to the Y Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="y">The value to add to the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Y Axis.</returns>
+        public static ref Vector2 AddY(ref this Vector2 v, float y)
         {
-            v.y += f.y;
+            v.y += y;
             return ref v;
         }
 
@@ -617,80 +780,124 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Subtract
 
         /// <summary>
-        /// Remove the given Vector2 from this Vector2.
+        /// Subtract the Axis of the second Vector2 from the first Vector2 and return the result.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 that is a subtraction.</returns>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to subtract.</param>
+        /// <returns>A new Vector2 with subtracted Axis.</returns>
         public static ref Vector2 Subtract(ref this Vector2 v, Vector2 f)
         {
-            v.x -= f.x;
-            v.y -= f.y;
+            v -= f;
             return ref v;
         }
 
         /// <summary>
-        /// Separate the X axis of the second Vector2 from the first Vector2.
+        /// Subtract the specified values from the Axis of this Vector3.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with subtraction X axis.</returns>
-        public static ref Vector2 SubtractX(ref this Vector2 v, Vector2 f)
+        /// <param name="x">The value to subtract from the X Axis.</param>
+        /// <param name="y">The value to subtract from the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Axis.</returns>
+        public static ref Vector2 Subtract(ref this Vector2 v, float x, float y) => ref v.SubtractX(x).SubtractY(y);
+
+        /// <summary>
+        /// Subtract the X Axis of the second Vector2 from the first Vector2 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to subtract.</param>
+        /// <returns>A new Vector2 with subtracted X Axis.</returns>
+        public static ref Vector2 SubtractX(ref this Vector2 v, Vector2 f) => ref v.SubtractX(f.x);
+
+        /// <summary>
+        /// Subtract the specified value from the X Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The value to subtract from the X Axis.</param>
+        /// <returns>A new Vector2 with updated X Axis.</returns>
+        public static ref Vector2 SubtractX(ref this Vector2 v, float x)
         {
-            v.x -= f.x;
+            v.x -= x;
             return ref v;
         }
 
         /// <summary>
-        /// Separate the Y axis of the second Vector2 from the first Vector2.
+        /// Subtract the Y Axis of the second Vector2 from the first Vector2 and return the result.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with subtraction Y axis.</returns>
-        public static ref Vector2 SubtractY(ref this Vector2 v, Vector2 f)
+        /// <param name="f">The Vector2 to subtract.</param>
+        /// <returns>A new Vector2 with subtracted Y Axis.</returns>
+        public static ref Vector2 SubtractY(ref this Vector2 v, Vector2 f) => ref v.SubtractY(f.y);
+
+        /// <summary>
+        /// Subtract the specified value from the Y Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="y">The value to subtract from the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Y Axis.</returns>
+        public static ref Vector2 SubtractY(ref this Vector2 v, float y)
         {
-            v.y -= f.y;
+            v.y -= y;
             return ref v;
         }
 
         #endregion
-
+        
         #region Multiply
 
         /// <summary>
-        /// Multiply this Vector2 with the given Vector2.
+        /// Multiply the Axis of this Vector2 with the corresponding Axis of another Vector2 and return the result.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 that is multiplied.</returns>
-        public static ref Vector2 Multiply(ref this Vector2 v, Vector2 f)
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to multiply.</param>
+        /// <returns>A new Vector2 with multiplied Axis.</returns>
+        public static ref Vector2 Multiply(ref this Vector2 v, Vector2 f) => ref v.MultiplyX(f.x).MultiplyY(f.y);
+
+        /// <summary>
+        /// Multiply the specified values with the Axis of this Vector3.
+        /// </summary>
+        /// <param name="v">This Vector3.</param>
+        /// <param name="x">The value to multiply with the X Axis.</param>
+        /// <param name="y">The value to multiply with the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Axis.</returns>
+        public static ref Vector2 Multiply(ref this Vector2 v, float x, float y) => ref v.MultiplyX(x).MultiplyY(y);
+
+        /// <summary>
+        /// Multiply the X Axis of this Vector2 with the X Axis of another Vector2 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to multiply.</param>
+        /// <returns>A new Vector2 with multiplied X Axis.</returns>
+        public static ref Vector2 MultiplyX(ref this Vector2 v, Vector2 f) => ref v.MultiplyX(f.x);
+
+        /// <summary>
+        /// Multiply the specified value with the X Axis of this Vector2.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The value to multiply with the X Axis.</param>
+        /// <returns>A new Vector2 with updated X Axis.</returns>
+        public static ref Vector2 MultiplyX(ref this Vector2 v, float x)
         {
-            v.x *= f.x;
-            v.y *= f.y;
+            v.x *= x;
             return ref v;
         }
 
         /// <summary>
-        /// Multiply the X axis of this Vector2 by the X axis of another Vector2.
+        /// Multiply the Y Axis of this Vector2 with the Y Axis of another Vector2 and return the result.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with multiplied X axis.</returns>
-        public static ref Vector2 MultiplyX(ref this Vector2 v, Vector2 f)
-        {
-            v.x *= f.x;
-            return ref v;
-        }
+        /// <param name="f">The Vector2 to multiply.</param>
+        /// <returns>A new Vector2 with multiplied Y Axis.</returns>
+        public static ref Vector2 MultiplyY(ref this Vector2 v, Vector2 f) => ref v.MultiplyY(f.y);
 
         /// <summary>
-        /// Multiply the Y axis of this Vector2 by the Y axis of another Vector2.
+        /// Multiply the specified value with the Y Axis of this Vector2.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector2 with multiplied Y axis.</returns>
-        public static ref Vector2 MultiplyY(ref this Vector2 v, Vector2 f)
+        /// <param name="y">The value to multiply with the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Y Axis.</returns>
+        public static ref Vector2 MultiplyY(ref this Vector2 v, float y)
         {
-            v.y *= f.y;
+            v.y *= y;
             return ref v;
         }
 
@@ -699,23 +906,36 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Divide
 
         /// <summary>
-        /// Divide this Vector2 with the given Vector2.
+        /// Divide the Axis of this Vector2 by the corresponding Axis of another Vector2 and return the result.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="f">The f Vector2.</param>
-        /// <returns>A new Vector3 that is division.</returns>
-        public static ref Vector2 Divide(ref this Vector2 v, Vector2 f)
-        {
-            v.x /= f.x;
-            v.y /= f.y;
-            return ref v;
-        }
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to divide by.</param>
+        /// <returns>A new Vector2 with divided Axis.</returns>
+        public static ref Vector2 Divide(ref this Vector2 v, Vector2 f) => ref v.DivideX(f.x).DivideY(f.y);
 
         /// <summary>
-        /// Divide the X vector of this Vector2
+        /// Divide the specified values by the Axis of this Vector2.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="x">Divider for the X vector.</param>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The value to divide by the X Axis.</param>
+        /// <param name="y">The value to divide by the Y Axis.</param>
+        /// <returns>A new Vector2 with updated Axis.</returns>
+        public static ref Vector2 Divide(ref this Vector2 v, float x, float y) => ref v.DivideX(x).DivideY(y);
+
+        /// <summary>
+        /// Divide the X Axis of this Vector2 by the X Axis of another Vector3 and return the result.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to divide by.</param>
+        /// <returns>A new Vector2 with divided X Axis.</returns>
+        public static ref Vector2 DivideX(ref this Vector2 v, Vector2 f) => ref v.DivideX(f.x);
+
+        /// <summary>
+        /// Divide the X Axis of this Vector2 by the specified value and return the result.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The value to divide by.</param>
+        /// <returns>A new Vector2 with updated X Axis.</returns>
         public static ref Vector2 DivideX(ref this Vector2 v, float x)
         {
             v.x /= x;
@@ -723,10 +943,19 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Divide the Y vector of this Vector2.
+        /// Divide the Y Axis of this Vector2 by the Y Axis of another Vector2 and return the result.
         /// </summary>
-        /// <param name="v">This vector2.</param>
-        /// <param name="y">Divider value for the Y vector.</param>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="f">The Vector2 to divide by.</param>
+        /// <returns>A new Vector2 with divided Y Axis.</returns>
+        public static ref Vector2 DivideY(ref this Vector2 v, Vector2 f) => ref v.DivideY(f.y);
+
+        /// <summary>
+        /// Divide the Y Axis of this Vector2 by the specified value and return the result.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="y">The value to divide by.</param>
+        /// <returns>A new Vector2 with updated Y Axis.</returns>
         public static ref Vector2 DivideY(ref this Vector2 v, float y)
         {
             v.y /= y;
@@ -734,7 +963,7 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         #endregion
-
+        
         #region Compare
 
         /// <summary>
@@ -746,8 +975,8 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <returns>True if the vectors are approximately equal within the specified margin.</returns>
         public static bool Compare(this Vector2 v, Vector2 f, float margin = 0.0001f)
         {
-            return Mathf.Abs(v.x - f.x) < margin 
-                   && Mathf.Abs(v.y - f.y) < margin;
+            return v.CompareX(f.x, margin)
+                   && v.CompareY(f.y, margin);
         }
 
         /// <summary>
@@ -757,10 +986,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The f Vector2 to compare with.</param>
         /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
         /// <returns>True if the X axes are approximately equal within the specified margin.</returns>
-        public static bool CompareX(this Vector2 v, Vector2 f, float margin = 0.0001f)
-        {
-            return Mathf.Abs(v.x - f.x) < margin;
-        }
+        public static bool CompareX(this Vector2 v, Vector2 f, float margin = 0.0001f) => v.CompareX(f.x, margin);
+        
+        /// <summary>
+        /// Compare a float value with the X Axis of this Vector2 with an optional margin for floating-point precision.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="x">The float value to compare with the X Axis.</param>
+        /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
+        /// <returns>True if the X Axis is approximately equal to the specified float value within the margin.</returns>
+        public static bool CompareX(this Vector2 v, float x, float margin = 0.0001f) => Mathf.Abs(v.x - x) < margin;
 
         /// <summary>
         /// Compare the Y axis of two Vector2 with an optional margin for floating-point precision.
@@ -769,10 +1004,16 @@ namespace Baz_geluk9.Feature_vault.Extensions
         /// <param name="f">The f Vector2 to compare with.</param>
         /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
         /// <returns>True if the Y axes are approximately equal within the specified margin.</returns>
-        public static bool CompareY(this Vector2 v, Vector2 f, float margin = 0.0001f)
-        {
-            return Mathf.Abs(v.y - f.y) < margin;
-        }
+        public static bool CompareY(this Vector2 v, Vector2 f, float margin = 0.0001f) => v.CompareY(f.y, margin);
+        
+        /// <summary>
+        /// Compare a float value with the Y Axis of this Vector2 with an optional margin for floating-point precision.
+        /// </summary>
+        /// <param name="v">This Vector2.</param>
+        /// <param name="y">The float value to compare with the Y Axis.</param>
+        /// <param name="margin">Optional margin for floating-point precision. Default is 0.</param>
+        /// <returns>True if the Y Axis is approximately equal to the specified float value within the margin.</returns>
+        public static bool CompareY(this Vector2 v, float y, float margin = 0.0001f) => Mathf.Abs(v.y - y) < margin;
 
         #endregion
 
@@ -793,11 +1034,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
         
         /// <summary>
-        /// Randomize the X and Y components of this Vector2 within the specified range.
+        /// Randomize the X and Y Axis of this Vector2 within the specified range.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="range">Range for X and Y components.</param>
-        /// <returns>A new Vector2 with randomized X and Y components.</returns>
+        /// <param name="range">Range for X and Y Axis.</param>
+        /// <returns>A new Vector2 with randomized X and Y Axis.</returns>
         public static ref Vector2 Randomize(ref this Vector2 v, Vector2 range)
         {
             v.RandomizeX(range);
@@ -806,11 +1047,11 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Randomize both components of this Vector2 with the same random number within the specified range.
+        /// Randomize both Axis of this Vector2 with the same random number within the specified range.
         /// </summary>
         /// <param name="v">This Vector2.</param>
-        /// <param name="range">Range for both components.</param>
-        /// <returns>A new Vector2 with the same randomized value for both components.</returns>
+        /// <param name="range">Range for both Axis.</param>
+        /// <returns>A new Vector2 with the same randomized value for both Axis.</returns>
         public static ref Vector2 RandomizeUniform(ref this Vector2 v, Vector2 range)
         {
             float randomValue = Random.Range(range.x, range.y);
@@ -848,22 +1089,17 @@ namespace Baz_geluk9.Feature_vault.Extensions
         #region Invert
 
         /// <summary>
-        /// Invert the X, and Y axes of this Vector2.
+        /// Invert the X, Y, and Z axes of this Vector2.
         /// </summary>
-        /// <param name="v">This Vector2.</param>
-        /// <returns>The Vector2 with inverted axes.</returns>
-        public static ref Vector2 Invert(ref this Vector2 v)
-        {
-            v.x = -v.x;
-            v.y = -v.y;
-            return ref v;
-        }
-
+        /// <param name="v">This Vector3.</param>
+        /// <returns>The Vector3 with inverted axes.</returns>
+        public static ref Vector2 Invert(ref this Vector2 v) => ref v.InvertX().InvertY();
+        
         /// <summary>
-        /// Invert the X axis of this Vector2.
+        /// Invert the X axis of this Vector3.
         /// </summary>
-        /// <param name="v">This Vector2.</param>
-        /// <returns>The Vector2 with the inverted X axis.</returns>
+        /// <param name="v">This Vector3.</param>
+        /// <returns>The Vector3 with the inverted X axis.</returns>
         public static ref Vector2 InvertX(ref this Vector2 v)
         {
             v.x = -v.x;
@@ -871,10 +1107,10 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Invert the Y axis of this Vector2.
+        /// Invert the Y axis of this Vector3.
         /// </summary>
-        /// <param name="v">This Vector2.</param>
-        /// <returns>The Vector2 with the inverted Y axis.</returns>
+        /// <param name="v">This Vector3.</param>
+        /// <returns>The Vector3 with the inverted Y axis.</returns>
         public static ref Vector2 InvertY(ref this Vector2 v)
         {
             v.y = -v.y;
@@ -932,24 +1168,24 @@ namespace Baz_geluk9.Feature_vault.Extensions
         }
 
         /// <summary>
-        /// Checks if the X component of this Vector2 is within the specified range of the X component of another Vector2.
+        /// Checks if the X Axis of this Vector2 is within the specified range of the X Axis of another Vector2.
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2 to compare with.</param>
-        /// <param name="range">The range within which the X components are considered "within."</param>
-        /// <returns>True if the X components are within the specified range; otherwise, false.</returns>
+        /// <param name="range">The range within which the X Axis are considered "within."</param>
+        /// <returns>True if the X Axis are within the specified range; otherwise, false.</returns>
         public static bool IsXWithinRange(this Vector2 v, Vector2 f, float range)
         {
             return Mathf.Abs(v.x - f.x) <= range;
         }
 
         /// <summary>
-        /// Checks if the Y component of this Vector2 is within the specified range of the Y component of another Vector2.
+        /// Checks if the Y Axis of this Vector2 is within the specified range of the Y Axis of another Vector2.
         /// </summary>
         /// <param name="v">This Vector2.</param>
         /// <param name="f">The f Vector2 to compare with.</param>
-        /// <param name="range">The range within which the Y components are considered "within."</param>
-        /// <returns>True if the Y components are within the specified range; otherwise, false.</returns>
+        /// <param name="range">The range within which the Y Axis are considered "within."</param>
+        /// <returns>True if the Y Axis are within the specified range; otherwise, false.</returns>
         public static bool IsYWithinRange(this Vector2 v, Vector2 f, float range)
         {
             return Mathf.Abs(v.y - f.y) <= range;
