@@ -414,6 +414,7 @@ MonoBehaviour:
   useJump: 0
   useAccelerate: 0
   useDecelerate: 0
+  p_walkingSpeed: 5
 --- !u!114 &1224749180
 MonoBehaviour:
   m_ObjectHideFlags: 0

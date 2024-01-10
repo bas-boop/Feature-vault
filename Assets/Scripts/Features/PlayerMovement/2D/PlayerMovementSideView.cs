@@ -12,13 +12,16 @@ namespace Baz_geluk9.Feature_vault.Feature.PlayerMovement
         
         public override void Jump()
         {
+            if(!useJump)
+                return;
             
+            _rigidbody.AddForce(new Vector2(0, 10));
         }
 
-        protected override void Move()
+        protected override void Walk()
         {
             Vector2 target = _rigidbody.velocity;
-            target.SetX(p_moveInput.x);
+            target.SetX(p_moveInput.x * p_walkingSpeed);
             _rigidbody.velocity = target;
         }
     }
