@@ -1,3 +1,4 @@
+using Baz_geluk9.Feature_vault.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,16 +12,13 @@ public class RangeVector3Drawer : PropertyDrawer
     {
         if (property.propertyType is SerializedPropertyType.Vector3 or SerializedPropertyType.Vector3Int)
         {
-            EditorGUI.BeginProperty(position, label, property);
-            
             RangeVector3 rangeAttribute = attribute as RangeVector3;
-
+            
+            EditorGUI.BeginProperty(position, label, property);
             EditorGUI.BeginChangeCheck();
             EditorGUI.LabelField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), label);
             EditorGUI.indentLevel++;
-
-            float labelWidth = EditorGUIUtility.labelWidth;
-
+            
             EditorGUIUtility.labelWidth = 12f;
 
             float thirdWidth = position.width / 3f;
@@ -35,55 +33,37 @@ public class RangeVector3Drawer : PropertyDrawer
 
             float yPosition = position.y + EditorGUIUtility.singleLineHeight + spacing;
 
-            Vector3 value;
+            Vector3 value = new();
 
             if (property.propertyType == SerializedPropertyType.Vector3)
             {
-                value.x = EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
-                    property.vector3Value.x, rangeAttribute.MinX, rangeAttribute.MaxX);
+                value.SetX(EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
+                    property.vector3Value.x, rangeAttribute.MinX, rangeAttribute.MaxX));
+
+                value.SetY(EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
+                    property.vector3Value.y, rangeAttribute.MinY, rangeAttribute.MaxY));
                 
-                value.y = EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
-                    property.vector3Value.y, rangeAttribute.MinY, rangeAttribute.MaxY);
-                
-                value.z = EditorGUI.Slider(new Rect(zMin, yPosition, sliderWidth, sliderHeight), "Z",
-                    property.vector3Value.z, rangeAttribute.MinZ, rangeAttribute.MaxZ);
+                value.SetZ(EditorGUI.Slider(new Rect(zMin, yPosition, sliderWidth, sliderHeight), "Z",
+                    property.vector3Value.z, rangeAttribute.MinZ, rangeAttribute.MaxZ));
             }
             else
             {
-                value.x = EditorGUI.IntSlider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
-                    property.vector3IntValue.x, Mathf.RoundToInt(rangeAttribute.MinX), Mathf.RoundToInt(rangeAttribute.MaxX));
+                value.SetX(EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
+                    property.vector3IntValue.x, Mathf.RoundToInt(rangeAttribute.MinX), Mathf.RoundToInt(rangeAttribute.MaxX)));
                 
-                value.y = EditorGUI.IntSlider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
-                    property.vector3IntValue.y, Mathf.RoundToInt(rangeAttribute.MinY), Mathf.RoundToInt(rangeAttribute.MaxY));
+                value.SetY(EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
+                    property.vector3IntValue.y, Mathf.RoundToInt(rangeAttribute.MinY), Mathf.RoundToInt(rangeAttribute.MaxY)));
                 
-                value.z = EditorGUI.IntSlider(new Rect(zMin, yPosition, sliderWidth, sliderHeight), "Z",
-                    property.vector3IntValue.z, Mathf.RoundToInt(rangeAttribute.MinZ), Mathf.RoundToInt(rangeAttribute.MaxZ));
+                value.SetZ(EditorGUI.Slider(new Rect(zMin, yPosition, sliderWidth, sliderHeight), "Z",
+                    property.vector3IntValue.z, Mathf.RoundToInt(rangeAttribute.MinZ), Mathf.RoundToInt(rangeAttribute.MaxZ)));
             }
 
             if (property.propertyType == SerializedPropertyType.Vector3)
                 property.vector3Value = value;
             else
                 property.vector3IntValue = new Vector3Int(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z));
-
-            EditorGUIUtility.labelWidth = labelWidth;
+            
             EditorGUI.indentLevel--;
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                var targetVector = property.propertyType == SerializedPropertyType.Vector3 
-                    ? property.vector3Value 
-                    : property.vector3IntValue;
-                
-                targetVector.x = Mathf.Clamp(targetVector.x, rangeAttribute.MinX, rangeAttribute.MaxX);
-                targetVector.y = Mathf.Clamp(targetVector.y, rangeAttribute.MinY, rangeAttribute.MaxY);
-                targetVector.z = Mathf.Clamp(targetVector.z, rangeAttribute.MinZ, rangeAttribute.MaxZ);
-
-                if (property.propertyType == SerializedPropertyType.Vector3)
-                    property.vector3Value = targetVector;
-                else
-                    property.vector3IntValue = new Vector3Int(Mathf.RoundToInt(targetVector.x), Mathf.RoundToInt(targetVector.y), Mathf.RoundToInt(targetVector.z));
-            }
-
             EditorGUI.EndProperty();
         }
         else

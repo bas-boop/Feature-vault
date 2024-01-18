@@ -14,6 +14,14 @@ public class RangeVector2 : PropertyAttribute
         MinY = minY;
         MaxY = maxY;
     }
+    
+    public RangeVector2(int minX, int maxX, int minY, int maxY)
+    {
+        MinX = minX;
+        MaxX = maxX;
+        MinY = minY;
+        MaxY = maxY;
+    }
 
     protected RangeVector2() { }
 }

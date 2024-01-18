@@ -11,8 +11,8 @@ public class Test : MonoBehaviour
     [SerializeField] private Vector3Int vector3Int;
     [Header("Sliders")]
     [SerializeField, Range(0,10)] private float rangedFloat;
-    [SerializeField, RangeVector2(0,10,5,20)] private Vector2 rangedVector2;
     [SerializeField, RangeVector2(0,10,5,20)] private Vector2Int rangedVector2Int;
+    [SerializeField, RangeVector2(0,10,5,20)] private Vector2 rangedVector2;
+    [SerializeField, RangeVector3(0,10f,5,20, 15, 1000)] private Vector3Int rangedVector3Int;
     [SerializeField, RangeVector3(0,10,5,20, 15, 1000)] private Vector3 rangedVector3;
-    [SerializeField, RangeVector3(0,10,5,20, 15, 1000)] private Vector3Int rangedVector3Int;
 }

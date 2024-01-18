@@ -6,23 +6,18 @@ using UnityEngine;
 public class RangeVector2Drawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return base.GetPropertyHeight(property, label) + EditorGUIUtility.standardVerticalSpacing * 10;
-    }
+        => EditorGUIUtility.singleLineHeight * 2.2f + EditorGUIUtility.standardVerticalSpacing;
     
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         if (property.propertyType is SerializedPropertyType.Vector2 or SerializedPropertyType.Vector2Int)
         {
-            EditorGUI.BeginProperty(position, label, property);
-            
             RangeVector2 rangeAttribute = attribute as RangeVector2;
-
+            
+            EditorGUI.BeginProperty(position, label, property);
             EditorGUI.BeginChangeCheck();
             EditorGUI.LabelField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), label);
             EditorGUI.indentLevel++;
-
-            float labelWidth = EditorGUIUtility.labelWidth;
             
             EditorGUIUtility.labelWidth = 12f;
 
@@ -37,60 +32,31 @@ public class RangeVector2Drawer : PropertyDrawer
 
             float yPosition = position.y + EditorGUIUtility.singleLineHeight + spacing;
 
-            Vector2 value;
+            Vector2 value = new();
 
             if (property.propertyType == SerializedPropertyType.Vector2)
             {
-                if (rangeAttribute != null)
-                {
-                    value.x = EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
-                        property.vector2Value.x, rangeAttribute.MinX, rangeAttribute.MaxX);
+                value.SetX(EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
+                    property.vector2Value.x, rangeAttribute.MinX, rangeAttribute.MaxX));
 
-                    value.y = EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
-                        property.vector2Value.y, rangeAttribute.MinY, rangeAttribute.MaxY);
-                }
-                else
-                    value = Vector2.one;
+                value.SetY(EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
+                    property.vector2Value.y, rangeAttribute.MinY, rangeAttribute.MaxY));
             }
             else
             {
-                if (rangeAttribute != null)
-                {
-                    value.x = EditorGUI.IntSlider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
-                        property.vector2IntValue.x, Mathf.RoundToInt(rangeAttribute.MinX),
-                        Mathf.RoundToInt(rangeAttribute.MaxX));
-
-                    value.y = EditorGUI.IntSlider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
-                        property.vector2IntValue.y, Mathf.RoundToInt(rangeAttribute.MinY),
-                        Mathf.RoundToInt(rangeAttribute.MaxY));
-                }
-                else
-                    value = Vector2.one;
+                value.SetX(EditorGUI.Slider(new Rect(xMin, yPosition, sliderWidth, sliderHeight), "X",
+                    property.vector2IntValue.x, Mathf.RoundToInt(rangeAttribute.MinX), Mathf.RoundToInt(rangeAttribute.MaxX)));
+                
+                value.SetY(EditorGUI.Slider(new Rect(yMin, yPosition, sliderWidth, sliderHeight), "Y",
+                    property.vector2IntValue.y, Mathf.RoundToInt(rangeAttribute.MinY), Mathf.RoundToInt(rangeAttribute.MaxY)));
             }
 
             if (property.propertyType == SerializedPropertyType.Vector2)
                 property.vector2Value = value;
             else
                 property.vector2IntValue = new Vector2Int(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y));
-
-            EditorGUIUtility.labelWidth = labelWidth;
+            
             EditorGUI.indentLevel--;
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                var targetVector = property.propertyType == SerializedPropertyType.Vector2 
-                    ? property.vector2Value 
-                    : property.vector2IntValue;
-                
-                targetVector.x = Mathf.Clamp(targetVector.x, rangeAttribute.MinX, rangeAttribute.MaxX);
-                targetVector.y = Mathf.Clamp(targetVector.y, rangeAttribute.MinY, rangeAttribute.MaxY);
-
-                if (property.propertyType == SerializedPropertyType.Vector2)
-                    property.vector2Value = targetVector;
-                else
-                    property.vector2IntValue = new Vector2Int(Mathf.RoundToInt(targetVector.x), Mathf.RoundToInt(targetVector.y));
-            }
-
             EditorGUI.EndProperty();
         }
         else
